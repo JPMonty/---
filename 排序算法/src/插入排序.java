@@ -7,11 +7,11 @@ import org.junit.Test;
 public class 插入排序 extends 排序 {
 
     /**
-     *  O(n2)
+     * O(n2)
      */
     @Test
     public void 直接插入排序() {
-        for (int i = 1; i < num; i++) {
+        for (int i = 1; i < size; i++) {
             // 需要排序的x
             final int x = after_queue[i];
             // 是否要进入排序
@@ -30,6 +30,7 @@ public class 插入排序 extends 排序 {
 
     @Test
     public void 直接插入排序_递归() {
+
         直接插入排序_递归实现(after_queue.length - 1);
     }
 
@@ -44,39 +45,39 @@ public class 插入排序 extends 排序 {
 
         int j = i - 1;
 
-        while (j > -1 && x < after_queue[j]){
-            after_queue[j + 1]  =after_queue[j];
+        while (j > -1 && x < after_queue[j]) {
+            after_queue[j + 1] = after_queue[j];
             j--;
         }
         after_queue[j + 1] = x;
-        return  after_queue;
+        return after_queue;
     }
 
 
+    /**
+     * O (1.5)
+     *
+     * 希尔排序（增量缩减排序）
+     */
     @Test
     public void 希尔排序() {
 
-        int dk = num / 2;
-        while (dk  >= 1) {
-            希尔排序_part(dk);
-            dk /= 2;
-        }
+        for (int dk = size / 2; dk >= 1; dk /= 2) {
 
-    }
+            for (int i = dk; i < size; i++) {
+                int j = i - dk;
+                int x = after_queue[i];
+                while (j >= 0 && x < after_queue[j]) {
 
-
-    public void 希尔排序_part(int dk) {
-        int i = 0;
-        while (i < num - dk) {
-            int s;
-            int a = after_queue[i];
-            int b = after_queue[i + dk];
-            if (b < a) {
-                after_queue[i] = b;
-                after_queue[i + dk] = a;
+                    after_queue[j + dk] = after_queue[j];
+                    j -= dk;
+                }
+                after_queue[j + dk] = x;
             }
-            i++;
+
         }
 
     }
+
+
 }

@@ -13,10 +13,10 @@ public class 选择排序 extends 排序 {
     @Test
     public void 简单选择排序() {
 
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < size; i++) {
             int k = i;
             // 找最小值的下标
-            for (int j = i + 1; j < num; j++) {
+            for (int j = i + 1; j < size; j++) {
                 if (after_queue[j] < after_queue[k]) {
                     k = j;
                 }

@@ -19,7 +19,7 @@ public class 排序 {
     protected static final int[] sorted =
             {0, 0, 0, 1, 1, 2, 2, 4, 5, 6, 7, 7, 7, 9, 13, 13, 15, 18, 18, 19, 19, 20, 21, 22, 22, 24, 25, 26, 26, 27, 27, 28, 29, 30, 31, 31, 33, 33, 33, 34, 35, 35, 35, 36, 37, 39, 41, 41, 43, 45, 47, 49, 49, 50, 50, 51, 52, 53, 53, 56, 57, 57, 59, 60, 60, 60, 62, 63, 63, 64, 65, 66, 67, 68, 73, 74, 75, 76, 76, 79, 79, 80, 80, 81, 81, 82, 82, 83, 83, 84, 87, 90, 91, 91, 93, 93, 94, 94, 95, 97};
 
-    protected static final int num = before_random_queue.length;
+    protected static final int size = before_random_queue.length;
 
     protected int[] after_queue = Arrays.copyOf(before_random_queue, before_random_queue.length);
 
