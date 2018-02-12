@@ -146,5 +146,4 @@ public class 选择排序 extends 排序 {
         after_queue[i] = tmp;
     }
 
-
 }
