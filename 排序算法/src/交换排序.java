@@ -83,4 +83,49 @@ public class 交换排序 extends 排序 {
     }
 
 
+    @Test
+    public void 归并排序() {
+
+        mergeSort(0, size - 1);
+
+    }
+
+
+    /**
+     *
+     *   i。。。。。。。。。。。。。。。。j
+     *          s = j - i
+     *   k.......i+s/2,i+s/2+1........m
+     *
+     *
+     * @param i
+     * @param j
+     */
+    private void mergeSort(int i, int j) {
+        if (i >= j) return;
+        int s = j - i;
+        mergeSort(i, i + s / 2);
+        mergeSort(i + s / 2 + 1, j);
+
+        int[] tmp = new int[j - i + 1];
+
+        int k = i;
+        int m = i + s / 2 + 1;
+
+        for (int n = 0; n < tmp.length; n++) {
+            if (k > i + s / 2) {
+                tmp[n] = after_queue[m++];
+            } else if (m > j) {
+                tmp[n] = after_queue[k++];
+            } else {
+                tmp[n] = after_queue[k] > after_queue[m] ? after_queue[m++] : after_queue[k++];
+            }
+        }
+
+        for (int n = i, x = 0; n <= j; n++) {
+            after_queue[n] = tmp[x++];
+        }
+    }
+
+
 }
