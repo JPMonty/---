@@ -83,29 +83,83 @@ public class 交换排序 extends 排序 {
     }
 
 
+    /**
+     *  归并排序 - 递归实现
+     */
     @Test
-    public void 归并排序() {
+    public void 归并排序_recycle() {
 
-        mergeSort(0, size - 1);
+        mergeSort_recycle(0, size - 1);
 
+    }
+
+
+    /**
+     *  归并排序 - 迭代实现
+     */
+    @Test
+    public void 归并排序_iterate() {
+        int n = 2;
+        for (; n - 1 <= size; n *= 2) {
+            mergeSort_iterate(n);
+        }
+
+        mergeSort_iterate(n);
+    }
+
+    private void mergeSort_iterate(int n) {
+        if (n / 2 > size) return;
+
+        for (int i = 0; i < size; i += n) {
+            int j  = i + n - 1;
+            if (j > size - 1) {
+                j = size - 1;
+            }
+
+            if (j == i) continue;
+
+            int s = n / 2;
+            int k = i;
+            int m = i + s;
+
+            int[] tmp = new int[j - i + 1];
+
+            for (int tn = 0; tn < j - i + 1; tn++) {
+                if (k > i + s - 1) {
+                    tmp[tn] = after_queue[m++];
+                } else if (m > j) {
+                    tmp[tn] = after_queue[k++];
+                } else {
+                    tmp[tn] = after_queue[m] > after_queue[k] ? after_queue[k++] : after_queue[m++];
+                }
+            }
+
+            for (int x = i, tn = 0; x <= j; x++) {
+                after_queue[x] = tmp[tn++];
+            }
+
+        }
     }
 
 
     /**
      *
      *   i。。。。。。。。。。。。。。。。j
-     *          s = j - i
-     *   k.......i+s/2,i+s/2+1........m
+     *           s = j - i
+     *   i。。。。i+s/2,i+s/2+1。。。。。j
+     *
+     *   k = i         m = i+s/2+1
+     *   k----------->,m-------------->
      *
      *
      * @param i
      * @param j
      */
-    private void mergeSort(int i, int j) {
+    private void mergeSort_recycle(int i, int j) {
         if (i >= j) return;
         int s = j - i;
-        mergeSort(i, i + s / 2);
-        mergeSort(i + s / 2 + 1, j);
+        mergeSort_recycle(i, i + s / 2);
+        mergeSort_recycle(i + s / 2 + 1, j);
 
         int[] tmp = new int[j - i + 1];
 
